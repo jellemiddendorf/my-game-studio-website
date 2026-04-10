@@ -1,0 +1,179 @@
+---
+import '../styles/global.css';
+
+// Every page passes its own title and description
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Indie game studio — games, experiments, and dev work.',
+} = Astro.props;
+
+// Used to highlight the active nav link
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Our global CSS -->
+  <!-- <link rel="stylesheet" href="/styles/global.css" /> -->
+</head>
+
+<body>
+  <!-- NAV -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="wordmark">
+        Gentle Tyrant Studio<span class="wordmark-dot">·</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li>
+            <a href="/" class:list={['nav-link', { active: currentPath === '/' }]}>
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="/projects" class:list={['nav-link', { active: currentPath.startsWith('/projects') }]}>
+              Projects
+            </a>
+          </li>
+          <li>
+            <a href="/about" class:list={['nav-link', { active: currentPath === '/about' }]}>
+              About
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT — each page slots in here -->
+  <main>
+    <slot />
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-copy">
+        &copy; {new Date().getFullYear()} Jelle Middendorf
+        — built with Astro &amp; Vue
+      </p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/yourname" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://yourname.itch.io" target="_blank" rel="noopener">itch.io</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
+
+<style>
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3.5rem;
+}
+
+.wordmark {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.wordmark-dot {
+  color: var(--accent-dark);
+  margin-left: 0.3em;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: var(--s4);
+}
+
+.nav-link {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent-dark);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link.active { color: var(--ink); }
+
+.nav-link.active::after,
+.nav-link:hover::after { width: 100%; }
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding-block: var(--s4);
+  margin-top: var(--s12);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
+
+.footer-links {
+  display: flex;
+  list-style: none;
+  gap: var(--s3);
+  font-size: 0.8rem;
+}
+</style>

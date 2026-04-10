@@ -1,0 +1,191 @@
+---
+import Base from '../layouts/Base.astro';
+import ScrambleText from '../components/ScrambleText.vue';
+import FlipCard from '../components/FlipCard.vue';
+import { projects } from '../data/projects';
+
+const featured = projects.filter(p => p.featured);
+---
+
+<Base title="Gentle Tyrant Studio">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+
+      <div class="hero-eyebrow">
+		<span class="tag">Software Engineer</span>
+        <span class="tag">Indie Game Dev</span>
+      </div>
+
+      <h1 class="hero-headline">
+        <ScrambleText client:load text="MAKING GAMES" delay={300} speed={35} />
+        <br />
+        <em class="hero-sub">that feel good to play.</em>
+      </h1>
+
+      <p class="hero-body">
+        Hi, I'm <strong>Jelle</strong> — a software engineer and indie dev.
+        I build games and the tools around them.
+      </p>
+
+      <div class="hero-cta">
+        <a href="/projects" class="btn btn-accent">See my work</a>
+        <a href="/about" class="btn">About me</a>
+      </div>
+
+    </div>
+
+    <div class="hero-grid" aria-hidden="true"></div>
+  </section>
+
+  <!-- FEATURED PROJECTS -->
+  <section class="section">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="tag">Projects</span>
+        <h2>Featured work</h2>
+      </div>
+
+      <div class="cards-grid">
+        {featured.map(project => (
+          <FlipCard client:visible project={project} />
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+</Base>
+
+<style>
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  padding-block: var(--s12);
+}
+
+.hero-eyebrow {
+  margin-bottom: var(--s3);
+}
+
+.hero-headline {
+  font-family: var(--font-body);
+  font-weight: 400;
+  margin-bottom: var(--s4);
+}
+
+.hero-sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.75em;
+  color: var(--ink-muted);
+}
+
+.hero-body {
+  max-width: 44ch;
+  color: var(--ink-muted);
+  margin-bottom: var(--s4);
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+
+/* Decorative background grid */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.hero-grid::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+}
+
+/* PROJECTS */
+.section-header {
+  margin-bottom: var(--s6);
+}
+
+.section-header h2 {
+  margin-top: var(--s2);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--s4);
+}
+
+@media (max-width: 600px) {
+  .hero { min-height: 75vh; }
+  .cards-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+
+
+
+
+
+
+
+<!-- ---
+import Base from '../layouts/Base.astro';
+import ScrambleText from '../components/ScrambleText.vue';
+---
+
+<Base title="Gentle Tyrant Studio">
+	<section class="section">
+		<div class="container">
+			<ScrambleText client:load text="MAKING GAMES" delay={300} speed={35} />
+			<h1>Hello world</h1>
+			<p>This is my studio site.</p>
+		</div>
+	</section>
+</Base> -->
+
+
+
+
+<!-- ---
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<h1>Astro</h1>
+	</body>
+</html> -->

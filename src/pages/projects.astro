@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import FlipCard from '../components/FlipCard.vue';
+import { projects } from '../data/projects';
+
+// Sort: released first, then wip, then prototype. Newest year first within each group.
+const sorted = [...projects].sort((a, b) => {
+  const order = { released: 0, wip: 1, prototype: 2 };
+  if (order[a.status] !== order[b.status]) {
+    return order[a.status] - order[b.status];
+  }
+  return b.year - a.year;
+});
+---
+
+<Base
+  title="Projects — My Game Studio"
+  description="Games and experiments from My Game Studio."
+>
+  <section class="section">
+    <div class="container">
+
+      <div class="page-header fade-up">
+        <span class="tag">Portfolio</span>
+        <h1>All projects</h1>
+        <p class="intro">
+          Everything I've shipped, built, or am currently hacking on.
+        </p>
+      </div>
+
+      <div class="cards-grid">
+        {sorted.map((project, i) => (
+          <div class="fade-up" style={`animation-delay: ${i * 0.08}s`}>
+            <FlipCard client:visible project={project} />
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</Base>
+
+<style>
+.page-header {
+  margin-bottom: var(--s8);
+}
+
+.page-header h1 {
+  margin-top: var(--s2);
+  margin-bottom: var(--s3);
+}
+
+.intro {
+  max-width: 50ch;
+  color: var(--ink-muted);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--s4);
+}
+
+@media (max-width: 600px) {
+  .cards-grid { grid-template-columns: 1fr; }
+}
+</style>

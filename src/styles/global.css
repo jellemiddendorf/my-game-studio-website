@@ -1,0 +1,129 @@
+/* =============================================
+   DESIGN TOKENS
+   ============================================= */
+:root {
+  /* Palette */
+  --bg:         #F5F4F0;   /* warm off-white */
+  --bg-card:    #EDECEA;
+  --ink:        #111110;   /* near-black */
+  --ink-muted:  #6B6A67;
+  --accent:     #C8FF00;   /* electric lime */
+  --accent-dark:#8FB800;
+  --border:     #D8D7D3;
+
+  /* Fonts */
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'DM Mono', 'Courier New', monospace;
+
+  /* Spacing */
+  --s1: 0.5rem;   --s2: 1rem;    --s3: 1.5rem;
+  --s4: 2rem;     --s6: 3rem;    --s8: 4rem;
+  --s12: 6rem;    --s16: 8rem;
+
+  /* Layout */
+  --max-w: 1100px;
+}
+
+/* =============================================
+   RESET
+   ============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+img { display: block; max-width: 100%; }
+a   { color: inherit; text-decoration: none; }
+
+/* =============================================
+   TYPOGRAPHY
+   ============================================= */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+h1 { font-size: clamp(2.5rem, 6vw, 5rem); }
+h2 { font-size: clamp(1.75rem, 3vw, 2.75rem); }
+h3 { font-size: 1.35rem; }
+
+/* =============================================
+   UTILITIES
+   ============================================= */
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--s4);
+}
+
+.section { padding-block: var(--s12); }
+
+.tag {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--ink);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2em 0.6em;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  border: 1px solid var(--ink);
+  padding: 0.6em 1.4em;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: transparent;
+  color: var(--ink);
+  transition: background 0.2s, color 0.2s;
+}
+.btn:hover { background: var(--ink); color: var(--bg); }
+
+.btn-accent {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+}
+.btn-accent:hover {
+  background: var(--ink);
+  color: var(--accent);
+  border-color: var(--ink);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+/* =============================================
+   PAGE FADE-IN ANIMATION
+   ============================================= */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeUp 0.6s ease both;
+}
