@@ -11,8 +11,6 @@ const featured = projects.filter(p => p.featured);
 
   <!-- HERO -->
   <section class="hero">
-    <canvas class="snow-canvas" id="snow"></canvas>
-
     <div class="container hero-inner">
       <div class="hero-eyebrow">
         <span class="tag">Indie Game Dev</span>
@@ -21,7 +19,7 @@ const featured = projects.filter(p => p.featured);
       <h1 class="hero-headline">
         <ScrambleText client:load text="MAKING GAMES" delay={300} speed={35} />
         <br />
-        <em>that feel like coming home.</em>
+        <em>that feel like coming home</em>
       </h1>
 
       <p class="hero-body">
@@ -54,7 +52,102 @@ const featured = projects.filter(p => p.featured);
 
 </Base>
 
-<script>
+<!-- <script>
+const canvas = document.getElementById('bgCanvas') as HTMLCanvasElement;
+const ctx = canvas.getContext('2d')!;
+
+let mouse = { x: 0, y: 0 };
+let target = { x: 0, y: 0 };
+let offset = { x: 0, y: 0 };
+
+function resize() {
+  const hero = canvas.parentElement!;
+  canvas.width = hero.offsetWidth;
+  canvas.height = hero.offsetHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+window.addEventListener('mousemove', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  mouse.x = e.clientX - rect.left;
+  mouse.y = e.clientY - rect.top;
+});
+
+function drawTriangleGrid(offsetX: number, offsetY: number) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const size = 80;
+  const h = size * Math.sqrt(3) / 2;
+  const cols = Math.ceil(canvas.width / size) + 3;
+  const rows = Math.ceil(canvas.height / h) + 3;
+
+  const ox = (offsetX % (size)) - size;
+  const oy = (offsetY % (h)) - h;
+
+  for (let row = -1; row < rows; row++) {
+    for (let col = -1; col < cols; col++) {
+      const x = col * size + (row % 2 === 0 ? 0 : size / 2) + ox;
+      const y = row * h + oy;
+
+      // Upward triangle
+      ctx.beginPath();
+      ctx.moveTo(x, y + h);
+      ctx.lineTo(x + size / 2, y);
+      ctx.lineTo(x + size, y + h);
+      ctx.closePath();
+
+      // Distance from center for depth variation
+      const cx = x + size / 2;
+      const cy = y + h / 2;
+      const dist = Math.sqrt(
+        Math.pow((cx - canvas.width / 2) / canvas.width, 2) +
+        Math.pow((cy - canvas.height / 2) / canvas.height, 2)
+      );
+      const opacity = 0.5;//Math.max(0.02, 0.07 - dist * 0.08);
+      ctx.strokeStyle = `rgba(168, 212, 232, ${opacity})`;
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+
+      // Downward triangle (creates the fractal-like subdivision feel)
+      const midX = x + size / 2;
+      const midY = y + h / 2;
+
+      ctx.beginPath();
+      ctx.moveTo(x + size / 4, y + h / 2);
+      ctx.lineTo(x + size * 3/4, y + h / 2);
+      ctx.lineTo(x + size / 2, y + h);
+      ctx.closePath();
+
+      const opacity2 = Math.max(0.01, 0.03 - dist * 0.04);
+      ctx.strokeStyle = `rgba(168, 212, 232, ${opacity2})`;
+      ctx.lineWidth = 0.3;
+      ctx.stroke();
+    }
+  }
+}
+
+function animate() {
+  // Smooth lerp toward mouse position — this is the parallax
+  target.x += (mouse.x - target.x) * 0.03;
+  target.y += (mouse.y - target.y) * 0.03;
+
+  offset.x = (target.x / canvas.width - 0.5) * 18;
+  offset.y = (target.y / canvas.height - 0.5) * 18;
+
+  drawTriangleGrid(offset.x, offset.y);
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script> -->
+
+
+
+
+
+
+<!-- <script>
 // Snow particle effect
 const canvas = document.getElementById('snow') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d')!;
@@ -108,7 +201,12 @@ function draw() {
 }
 
 draw();
-</script>
+</script> -->
+
+
+
+
+
 
 <!-- <Base title="Gentle Tyrant Studio">
 
@@ -227,12 +325,23 @@ draw();
   gap: var(--s2);
 }
 
-/* ─── Snow canvas ────────────────────────────── */
-.snow-canvas {
+/* ─── bg canvas ────────────────────────────── 0.04*/
+/* .hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 60% 50% at 65% 50%,
+    rgba(168, 212, 232, 0.15) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+} */
+/* .bg-canvas {
   position: absolute;
   inset: 0;
   pointer-events: none;
-}
+} */
 
 /* ─── Featured section ───────────────────────── */
 .section-header {

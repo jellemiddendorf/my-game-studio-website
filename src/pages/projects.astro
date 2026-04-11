@@ -46,6 +46,35 @@ const sorted = [...projects].sort((a, b) => {
 }
 
 .page-header h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  margin-top: var(--s2);
+  margin-bottom: var(--s3);
+  color: var(--ink);
+}
+
+.intro {
+  max-width: 50ch;
+  color: var(--ink-muted);
+  font-size: 0.875rem;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--s4);
+}
+
+@media (max-width: 600px) {
+  .cards-grid { grid-template-columns: 1fr; }
+}
+</style>
+<!-- <style>
+.page-header {
+  margin-bottom: var(--s8);
+}
+
+.page-header h1 {
   margin-top: var(--s2);
   margin-bottom: var(--s3);
 }
@@ -64,4 +93,4 @@ const sorted = [...projects].sort((a, b) => {
 @media (max-width: 600px) {
   .cards-grid { grid-template-columns: 1fr; }
 }
-</style>
+</style> -->
