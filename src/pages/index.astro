@@ -7,9 +7,112 @@ import { projects } from '../data/projects';
 const featured = projects.filter(p => p.featured);
 ---
 
-<Base title="Gentle Tyrant Studio">
+<Base title="Gentle Tyrant Studio — Indie Game Dev">
 
   <!-- HERO -->
+  <section class="hero">
+    <canvas class="snow-canvas" id="snow"></canvas>
+
+    <div class="container hero-inner">
+      <div class="hero-eyebrow">
+        <span class="tag">Indie Game Dev</span>
+      </div>
+
+      <h1 class="hero-headline">
+        <ScrambleText client:load text="MAKING GAMES" delay={300} speed={35} />
+        <br />
+        <em>that feel like coming home.</em>
+      </h1>
+
+      <p class="hero-body">
+        Solo dev behind Gentle Tyrant Studio. I make games that
+        are soft on the outside and interesting on the inside.
+      </p>
+
+      <div class="hero-cta">
+        <a href="/projects" class="btn btn-accent">See my work</a>
+        <a href="/about" class="btn">About me</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PROJECTS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">Projects</span>
+        <h2>Featured work</h2>
+      </div>
+
+      <div class="cards-grid">
+        {featured.map(project => (
+          <FlipCard client:visible project={project} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<script>
+// Snow particle effect
+const canvas = document.getElementById('snow') as HTMLCanvasElement;
+const ctx = canvas.getContext('2d')!;
+
+function resize() {
+  const hero = canvas.parentElement!;
+  canvas.width = hero.offsetWidth;
+  canvas.height = hero.offsetHeight;
+}
+// function resize() {
+//   canvas.width = canvas.offsetWidth;
+//   canvas.height = canvas.offsetHeight;
+// }
+resize();
+window.addEventListener('resize', resize);
+
+function rand(min: number, max: number) {
+  return Math.random() * (max - min) + min;
+}
+
+const particles = Array.from({ length: 130 }, () => ({
+  x:           rand(0, canvas.width),
+  y:           rand(0, canvas.height),
+  r:           rand(0.3, 1.2),
+  speed:       rand(0.15, 0.55),
+  drift:       rand(-0.06, 0.06),
+  opacity:     0.5,//rand(0.04, 0.18),
+  wobble:      rand(0, Math.PI * 2),
+  wobbleSpeed: rand(0.003, 0.008),
+}));
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (const p of particles) {
+    p.y += p.speed;
+    p.wobble += p.wobbleSpeed;
+    p.x += p.drift + Math.sin(p.wobble) * 0.15;
+
+    if (p.y > canvas.height) { p.y = -2; p.x = rand(0, canvas.width); }
+    if (p.x > canvas.width)  p.x = 0;
+    if (p.x < 0)             p.x = canvas.width;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(200, 220, 235, ${p.opacity})`;
+    ctx.fill();
+  }
+
+  requestAnimationFrame(draw);
+}
+
+draw();
+</script>
+
+<!-- <Base title="Gentle Tyrant Studio">
+
+  
   <section class="hero">
     <div class="container hero-inner">
 
@@ -39,7 +142,7 @@ const featured = projects.filter(p => p.featured);
     <div class="hero-grid" aria-hidden="true"></div>
   </section>
 
-  <!-- FEATURED PROJECTS -->
+
   <section class="section">
     <div class="container">
 
@@ -57,9 +160,106 @@ const featured = projects.filter(p => p.featured);
     </div>
   </section>
 
-</Base>
+</Base> -->
 
 <style>
+/* ─── Hero ───────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  padding-block: var(--s12);
+}
+
+.hero-eyebrow {
+  margin-bottom: var(--s3);
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent-dim);
+  background: rgba(26, 48, 64, 0.4);
+  padding: 0.3em 0.8em;
+}
+
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  margin-bottom: var(--s4);
+  color: var(--ink);
+}
+
+.hero-headline em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-sub {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-body {
+  max-width: 40ch;
+  color: var(--ink-muted);
+  margin-bottom: var(--s4);
+  font-size: 0.85rem;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+
+/* ─── Snow canvas ────────────────────────────── */
+.snow-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ─── Featured section ───────────────────────── */
+.section-header {
+  margin-bottom: var(--s6);
+}
+
+.section-header h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  margin-top: var(--s2);
+  color: var(--ink);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--s4);
+}
+
+/* ─── Mobile ─────────────────────────────────── */
+@media (max-width: 600px) {
+  .hero { min-height: 75vh; }
+  .cards-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<!-- <style>
 /* HERO */
 .hero {
   position: relative;
@@ -145,7 +345,7 @@ const featured = projects.filter(p => p.featured);
   .hero { min-height: 75vh; }
   .cards-grid { grid-template-columns: 1fr; }
 }
-</style>
+</style> -->
 
 
 

@@ -3,19 +3,21 @@
    ============================================= */
 :root {
   /* Palette */
-  --bg:         #F5F4F0;   /* warm off-white */
-  --bg-card:    #EDECEA;
-  --ink:        #111110;   /* near-black */
-  --ink-muted:  #6B6A67;
-  --accent:     #C8FF00;   /* electric lime */
-  --accent-dark:#8FB800;
-  --border:     #D8D7D3;
+  --bg:          #0A0A0A;
+  --bg-card:     #111111;
+  --bg-raised:   #181818;
+  --ink:         #F0EEE8;
+  --ink-muted:   #555550;
+  --accent:      #A8D4E8;
+  --accent-dark: #5BA8C8;
+  --accent-dim:  #1A3040;
+  --border:      #222222;
 
   /* Fonts */
-  --font-display: 'DM Serif Display', Georgia, serif;
-  --font-body:    'DM Mono', 'Courier New', monospace;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Space Mono', 'Courier New', monospace;
 
-  /* Spacing */
+  /* Spacing — unchanged */
   --s1: 0.5rem;   --s2: 1rem;    --s3: 1.5rem;
   --s4: 2rem;     --s6: 3rem;    --s8: 4rem;
   --s12: 6rem;    --s16: 8rem;
@@ -23,6 +25,24 @@
   /* Layout */
   --max-w: 1100px;
 }
+/* :root {
+  --bg:         #F5F4F0;
+  --bg-card:    #EDECEA;
+  --ink:        #111110;
+  --ink-muted:  #6B6A67;
+  --accent:     #C8FF00;
+  --accent-dark:#8FB800;
+  --border:     #D8D7D3;
+
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'DM Mono', 'Courier New', monospace;
+
+  --s1: 0.5rem;   --s2: 1rem;    --s3: 1.5rem;
+  --s4: 2rem;     --s6: 3rem;    --s8: 4rem;
+  --s12: 6rem;    --s16: 8rem;
+
+  --max-w: 1100px;
+} */
 
 /* =============================================
    RESET

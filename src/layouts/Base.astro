@@ -30,9 +30,13 @@ const currentPath = Astro.url.pathname;
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
     rel="stylesheet"
   />
+  <!-- <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap"
+    rel="stylesheet"
+  /> -->
 
   <!-- Our global CSS -->
   <!-- <link rel="stylesheet" href="/styles/global.css" /> -->
@@ -43,7 +47,7 @@ const currentPath = Astro.url.pathname;
   <header class="site-header">
     <div class="container header-inner">
       <a href="/" class="wordmark">
-        Gentle Tyrant Studio<span class="wordmark-dot">·</span>
+        Gentle Tyrant Studio<span class="wordmark-dot"> ·</span>
       </a>
 
       <nav>
@@ -90,6 +94,116 @@ const currentPath = Astro.url.pathname;
 </html>
 
 <style>
+/* ─── Header ─────────────────────────────────── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 10, 10, 0.85);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3.5rem;
+}
+
+.wordmark {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.wordmark-dot {
+  color: var(--accent);
+  margin-left: 0.3em;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: var(--s4);
+}
+
+.nav-link {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link.active { color: var(--ink); }
+
+.nav-link.active::after,
+.nav-link:hover::after { width: 100%; }
+
+/* ─── Footer ─────────────────────────────────── */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding-block: var(--s4);
+  margin-top: var(--s12);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+
+.footer-copy {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+}
+
+.footer-links {
+  display: flex;
+  list-style: none;
+  gap: var(--s3);
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+}
+
+.footer-links a {
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+/* ─── Mobile ─────────────────────────────────── */
+@media (max-width: 600px) {
+  .nav-links { gap: var(--s3); }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+</style>
+
+
+<!-- <style>
 .site-header {
   position: sticky;
   top: 0;
@@ -176,4 +290,4 @@ const currentPath = Astro.url.pathname;
   gap: var(--s3);
   font-size: 0.8rem;
 }
-</style>
+</style> -->
