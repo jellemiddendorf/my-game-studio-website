@@ -129,14 +129,16 @@ defineProps<{
   text-transform: uppercase;
   padding: 0.25em 0.6em;
   border: 1px solid var(--accent-dim);
-  background: rgba(26, 48, 64, 0.7);
+  background: var(--accent-dim);
+  /* background: rgba(26, 48, 64, 0.7); */
   color: var(--accent);
 }
 
 .status-badge[data-status="released"] {
-  background: rgba(26, 48, 64, 0.9);
-  color: var(--accent);
   border-color: var(--accent-dark);
+  background: var(--accent-dim);
+  /* background: rgba(26, 48, 64, 0.9); */
+  color: var(--accent);
 }
 
 .front-meta {
@@ -146,14 +148,16 @@ defineProps<{
 
 .front-title {
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: var(--text-lg);
+  /* font-size: 1.3rem; */
   font-weight: 400;
   color: var(--ink);
   margin-bottom: 0.25rem;
 }
 
 .front-tagline {
-  font-size: 0.75rem;
+  font-size: var(--text-base);
+  /* font-size: 0.75rem; */
   color: var(--ink-muted);
   line-height: 1.5;
 }
@@ -188,7 +192,8 @@ defineProps<{
 }
 
 .back-engine {
-  font-size: 0.65rem;
+  font-size: var(--text-xs);
+  /* font-size: 0.65rem; */
   color: var(--accent);
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -204,7 +209,8 @@ defineProps<{
 }
 
 .back-description {
-  font-size: 0.8rem;
+  font-size: var(--text-base);
+  /* font-size: 0.8rem; */
   line-height: 1.7;
   color: var(--ink-muted);
   margin-bottom: 1.25rem;
@@ -219,7 +225,8 @@ defineProps<{
 }
 
 .back-tag {
-  font-size: 0.6rem;
+  font-size: var(--text-xs);
+  /* font-size: 0.6rem; */
   letter-spacing: 0.08em;
   text-transform: uppercase;
   border: 1px solid var(--border);

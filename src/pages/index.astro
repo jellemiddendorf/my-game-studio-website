@@ -13,18 +13,21 @@ const featured = projects.filter(p => p.featured);
   <section class="hero">
     <div class="container hero-inner">
       <div class="hero-eyebrow">
+        <span class="tag">Software Engineer</span>
         <span class="tag">Indie Game Dev</span>
       </div>
 
       <h1 class="hero-headline">
-        <ScrambleText client:load text="MAKING GAMES" delay={300} speed={35} />
+        <ScrambleText client:load text="GENTLE BY NATURE" delay={300} speed={20} />
         <br />
-        <em>that feel like coming home</em>
+        <em class="hero-sub">Tyrannical about games</em>
       </h1>
 
       <p class="hero-body">
-        Solo dev behind Gentle Tyrant Studio. I make games that
-        are soft on the outside and interesting on the inside.
+        Solo developer. I program for the same reason people draw,
+        because I had ideas that needed somewhere to go.
+        <!-- Solo dev behind Gentle Tyrant Studio. I make games that
+        are soft on the outside and interesting on the inside. -->
       </p>
 
       <div class="hero-cta">
@@ -288,8 +291,11 @@ draw();
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--accent);
-  border: 1px solid var(--accent-dim);
-  background: rgba(26, 48, 64, 0.4);
+  border: 1px solid var(--accent-dark);
+  background: var(--accent-dim);
+  /* color: var(--accent); */
+  /* border: 1px solid var(--accent-dim); */
+  /* background: rgba(26, 48, 64, 0.4); */
   padding: 0.3em 0.8em;
 }
 
@@ -308,15 +314,22 @@ draw();
 }
 
 .hero-sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  /* font-size: 0.6em; */
+  color: var(--ink-muted);
+  font-weight: 400;
+}
+/* .hero-sub {
   font-style: italic;
   color: var(--accent);
-}
+} */
 
 .hero-body {
   max-width: 40ch;
   color: var(--ink-muted);
   margin-bottom: var(--s4);
-  font-size: 0.85rem;
+  /* font-size: 0.85rem; */
 }
 
 .hero-cta {

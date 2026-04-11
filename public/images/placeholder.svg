@@ -1,6 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
-  <rect width="600" height="400" fill="#EDECEA"/>
-  <line x1="0" y1="0" x2="600" y2="400" stroke="#D8D7D3" stroke-width="0.5"/>
-  <line x1="600" y1="0" x2="0" y2="400" stroke="#D8D7D3" stroke-width="0.5"/>
-  <text x="300" y="208" font-family="monospace" font-size="13" fill="#6B6A67" text-anchor="middle" letter-spacing="0.1em">SCREENSHOT COMING SOON</text>
+  <rect width="600" height="400" fill="#111111"/>
+  <rect x="1" y="1" width="598" height="398" fill="none" stroke="#222222" stroke-width="1"/>
+  <line x1="0" y1="0" x2="600" y2="400" stroke="#222222" stroke-width="0.5"/>
+  <line x1="600" y1="0" x2="0" y2="400" stroke="#222222" stroke-width="0.5"/>
+  <text
+    x="300"
+    y="208"
+    font-family="monospace"
+    font-size="13"
+    fill="#333333"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    letter-spacing="0.1em"
+  >IMAGE COMING SOON</text>
 </svg>
