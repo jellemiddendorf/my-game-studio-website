@@ -26,11 +26,10 @@ export const projects: Project[] = [
     title: 'Project Giza',
     tagline: 'Can you build something that stands the test of time?',
     description:
-        'An incremental game about constructing the Great Pyramid using a living, physical economy. ' +
-        'Workers haul real limestone blocks across the desert while farms, workshops, and trade networks support the effort. ',// +
-        // 'Blending tactile logistics with idle progression, making every step of the build satisfying.',
+        'An incremental game about constructing the Great Pyramid.' +
+        'Workers push limestone blocks across the desert while farms, workshops, and trade networks support the effort. ',
     engine: 'Godot 4',
-    tags: ['Incremental', 'Simulation', 'Godot'],
+    tags: ['Incremental', 'Simulation', 'Godot', 'Egypt'],
     status: 'wip',
     year: 2026,
     image: '/images/placeholder.svg',

@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 
-// Every page passes its own title and description
 interface Props {
   title: string;
   description?: string;
@@ -12,7 +11,6 @@ const {
   description = 'Indie game studio — games, experiments, and dev work.',
 } = Astro.props;
 
-// Used to highlight the active nav link
 const currentPath = Astro.url.pathname;
 ---
 
@@ -30,22 +28,9 @@ const currentPath = Astro.url.pathname;
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
-    rel="stylesheet"
-  />
-  <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap"
     rel="stylesheet"
   />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-  <!-- <link
-    href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap"
-    rel="stylesheet"
-  /> -->
-
-  <!-- Our global CSS -->
-  <!-- <link rel="stylesheet" href="/styles/global.css" /> -->
 </head>
 
 <body>
@@ -80,7 +65,7 @@ const currentPath = Astro.url.pathname;
     </div>
   </header>
 
-  <!-- PAGE CONTENT — each page slots in here -->
+  <!-- PAGE CONTENT SLOTS-->
   <main>
     <slot />
   </main>
@@ -89,11 +74,10 @@ const currentPath = Astro.url.pathname;
   <footer class="site-footer">
     <div class="container footer-inner">
       <p class="footer-copy">
-        &copy; {new Date().getFullYear()} Jelle Middendorf
-        — built with Astro &amp; Vue
+        &copy; {new Date().getFullYear()} Jelle Middendorf — built with Astro &amp; Vue
       </p>
       <ul class="footer-links">
-        <li><a href="https://github.com/yourname" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://github.com/jellemiddendorf" target="_blank" rel="noopener">GitHub</a></li>
         <li><a href="https://yourname.itch.io" target="_blank" rel="noopener">itch.io</a></li>
       </ul>
     </div>
@@ -103,12 +87,11 @@ const currentPath = Astro.url.pathname;
 
 
 <style>
-/* ─── Header ─────────────────────────────────── */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(10, 10, 10, 0.85);
+  background: rgba(10, 10, 10, 0.75); /*0.85*/
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -121,16 +104,12 @@ const currentPath = Astro.url.pathname;
   height: 4rem;
 }
 
-/* ─── Wordmark ───────────────────────────────── */
 .wordmark {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   text-decoration: none;
-}
-
-.wordmark-dot {
-  color: var(--accent);
+  min-width: 0;
 }
 
 .logo-placeholder {
@@ -164,11 +143,20 @@ const currentPath = Astro.url.pathname;
 .wordmark-text {
   font-family: var(--font-body);
   font-size: var(--text-base);
-  /* font-size: 0.875rem; */
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wordmark-dot {
+  padding-right: 10px;
+  color: var(--accent);
+  flex-shrink: 0;
 }
 
 /* ─── Nav ────────────────────────────────────── */
@@ -176,15 +164,16 @@ const currentPath = Astro.url.pathname;
   display: flex;
   list-style: none;
   gap: var(--s4);
+  flex-shrink: 0;
 }
 
 .nav-link {
   font-size: var(--text-base);
-  /* font-size: 0.875rem; */
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-muted);
   transition: color 0.2s;
+  white-space: nowrap;
 }
 
 .nav-link:hover,
@@ -192,7 +181,6 @@ const currentPath = Astro.url.pathname;
   color: var(--ink);
 }
 
-/* ─── Footer ─────────────────────────────────── */
 .site-footer {
   border-top: 1px solid var(--border);
   padding-block: var(--s4);
@@ -220,229 +208,20 @@ const currentPath = Astro.url.pathname;
   color: var(--ink-muted);
 }
 
-.footer-links a {
-  transition: color 0.2s;
-}
-
 .footer-links a:hover {
   color: var(--ink);
 }
 
-/* ─── Mobile ─────────────────────────────────── */
 @media (max-width: 600px) {
-  .nav-links { gap: var(--s3); }
+  .logo-placeholder { display: none; }
+  .wordmark-text {
+    font-size: var(--text-sm);
+    white-space: normal;
+    line-height: 1.3;
+  }
+  .wordmark-dot { display: none; }
+  .nav-links { gap: var(--s2); }
+  .nav-link { font-size: var(--text-sm); }
   .footer-inner { flex-direction: column; align-items: flex-start; }
 }
 </style>
-
-
-
-<!-- <style>
-/* ─── Header ─────────────────────────────────── */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(10, 10, 10, 0.85);
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 3.5rem;
-}
-
-.wordmark {
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-
-.wordmark-dot {
-  color: var(--accent);
-  margin-left: 0.3em;
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: var(--s4);
-}
-
-.nav-link {
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  transition: color 0.2s;
-  position: relative;
-  padding-bottom: 2px;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--accent);
-  transition: width 0.25s ease;
-}
-
-.nav-link:hover,
-.nav-link.active { color: var(--ink); }
-
-.nav-link.active::after,
-.nav-link:hover::after { width: 100%; }
-
-/* ─── Footer ─────────────────────────────────── */
-.site-footer {
-  border-top: 1px solid var(--border);
-  padding-block: var(--s4);
-  margin-top: var(--s12);
-}
-
-.footer-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--s2);
-}
-
-.footer-copy {
-  font-size: 0.75rem;
-  color: var(--ink-muted);
-}
-
-.footer-links {
-  display: flex;
-  list-style: none;
-  gap: var(--s3);
-  font-size: 0.75rem;
-  color: var(--ink-muted);
-}
-
-.footer-links a {
-  transition: color 0.2s;
-}
-
-.footer-links a:hover {
-  color: var(--accent);
-}
-
-/* ─── Mobile ─────────────────────────────────── */
-@media (max-width: 600px) {
-  .nav-links { gap: var(--s3); }
-  .footer-inner { flex-direction: column; align-items: flex-start; }
-}
-</style> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <style>
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-}
-
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 3.5rem;
-}
-
-.wordmark {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.wordmark-dot {
-  color: var(--accent-dark);
-  margin-left: 0.3em;
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: var(--s4);
-}
-
-.nav-link {
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  transition: color 0.2s;
-  position: relative;
-  padding-bottom: 2px;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--accent-dark);
-  transition: width 0.25s ease;
-}
-
-.nav-link:hover,
-.nav-link.active { color: var(--ink); }
-
-.nav-link.active::after,
-.nav-link:hover::after { width: 100%; }
-
-.site-footer {
-  border-top: 1px solid var(--border);
-  padding-block: var(--s4);
-  margin-top: var(--s12);
-}
-
-.footer-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--s2);
-}
-
-.footer-copy {
-  font-size: 0.8rem;
-  color: var(--ink-muted);
-}
-
-.footer-links {
-  display: flex;
-  list-style: none;
-  gap: var(--s3);
-  font-size: 0.8rem;
-}
-</style> -->

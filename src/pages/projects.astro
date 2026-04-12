@@ -14,8 +14,8 @@ const sorted = [...projects].sort((a, b) => {
 ---
 
 <Base
-  title="Projects — My Game Studio"
-  description="Games and experiments from My Game Studio."
+  title="Projects — Gentle Tyrant Studio"
+  description="Games, Tools and experiments from Gentle Tyrant Studio."
 >
   <section class="section">
     <div class="container">
@@ -24,7 +24,7 @@ const sorted = [...projects].sort((a, b) => {
         <span class="tag">Portfolio</span>
         <h1>All projects</h1>
         <p class="intro">
-          Everything I've shipped, built, or am currently hacking on.
+          Everything I've shipped, built, or am currently working on.
         </p>
       </div>
 
@@ -46,17 +46,13 @@ const sorted = [...projects].sort((a, b) => {
 }
 
 .page-header h1 {
-  font-family: var(--font-display);
-  font-weight: 400;
   margin-top: var(--s2);
   margin-bottom: var(--s3);
-  color: var(--ink);
 }
 
 .intro {
   max-width: 50ch;
-  color: var(--ink-muted);
-  font-size: 0.875rem;
+  color: var(--ink-soft);
 }
 
 .cards-grid {
@@ -69,28 +65,3 @@ const sorted = [...projects].sort((a, b) => {
   .cards-grid { grid-template-columns: 1fr; }
 }
 </style>
-<!-- <style>
-.page-header {
-  margin-bottom: var(--s8);
-}
-
-.page-header h1 {
-  margin-top: var(--s2);
-  margin-bottom: var(--s3);
-}
-
-.intro {
-  max-width: 50ch;
-  color: var(--ink-muted);
-}
-
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--s4);
-}
-
-@media (max-width: 600px) {
-  .cards-grid { grid-template-columns: 1fr; }
-}
-</style> -->

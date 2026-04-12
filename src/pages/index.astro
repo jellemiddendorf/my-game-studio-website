@@ -11,6 +11,13 @@ const featured = projects.filter(p => p.featured);
 
   <!-- HERO -->
   <section class="hero">
+
+    <!-- Background image -->
+    <div class="hero-bg"></div>
+
+    <!-- Borderless glass wash behind text -->
+    <div class="hero-wash"></div>
+
     <div class="container hero-inner">
       <div class="hero-eyebrow">
         <span class="tag">Software Engineer</span>
@@ -26,8 +33,6 @@ const featured = projects.filter(p => p.featured);
       <p class="hero-body">
         Solo developer. I program for the same reason people draw,
         because I had ideas that needed somewhere to go.
-        <!-- Solo dev behind Gentle Tyrant Studio. I make games that
-        are soft on the outside and interesting on the inside. -->
       </p>
 
       <div class="hero-cta">
@@ -35,6 +40,7 @@ const featured = projects.filter(p => p.featured);
         <a href="/about" class="btn">About me</a>
       </div>
     </div>
+
   </section>
 
   <!-- FEATURED PROJECTS -->
@@ -55,281 +61,115 @@ const featured = projects.filter(p => p.featured);
 
 </Base>
 
-<!-- <script>
-const canvas = document.getElementById('bgCanvas') as HTMLCanvasElement;
-const ctx = canvas.getContext('2d')!;
-
-let mouse = { x: 0, y: 0 };
-let target = { x: 0, y: 0 };
-let offset = { x: 0, y: 0 };
-
-function resize() {
-  const hero = canvas.parentElement!;
-  canvas.width = hero.offsetWidth;
-  canvas.height = hero.offsetHeight;
-}
-resize();
-window.addEventListener('resize', resize);
-
-window.addEventListener('mousemove', (e) => {
-  const rect = canvas.getBoundingClientRect();
-  mouse.x = e.clientX - rect.left;
-  mouse.y = e.clientY - rect.top;
-});
-
-function drawTriangleGrid(offsetX: number, offsetY: number) {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  const size = 80;
-  const h = size * Math.sqrt(3) / 2;
-  const cols = Math.ceil(canvas.width / size) + 3;
-  const rows = Math.ceil(canvas.height / h) + 3;
-
-  const ox = (offsetX % (size)) - size;
-  const oy = (offsetY % (h)) - h;
-
-  for (let row = -1; row < rows; row++) {
-    for (let col = -1; col < cols; col++) {
-      const x = col * size + (row % 2 === 0 ? 0 : size / 2) + ox;
-      const y = row * h + oy;
-
-      // Upward triangle
-      ctx.beginPath();
-      ctx.moveTo(x, y + h);
-      ctx.lineTo(x + size / 2, y);
-      ctx.lineTo(x + size, y + h);
-      ctx.closePath();
-
-      // Distance from center for depth variation
-      const cx = x + size / 2;
-      const cy = y + h / 2;
-      const dist = Math.sqrt(
-        Math.pow((cx - canvas.width / 2) / canvas.width, 2) +
-        Math.pow((cy - canvas.height / 2) / canvas.height, 2)
-      );
-      const opacity = 0.5;//Math.max(0.02, 0.07 - dist * 0.08);
-      ctx.strokeStyle = `rgba(168, 212, 232, ${opacity})`;
-      ctx.lineWidth = 0.5;
-      ctx.stroke();
-
-      // Downward triangle (creates the fractal-like subdivision feel)
-      const midX = x + size / 2;
-      const midY = y + h / 2;
-
-      ctx.beginPath();
-      ctx.moveTo(x + size / 4, y + h / 2);
-      ctx.lineTo(x + size * 3/4, y + h / 2);
-      ctx.lineTo(x + size / 2, y + h);
-      ctx.closePath();
-
-      const opacity2 = Math.max(0.01, 0.03 - dist * 0.04);
-      ctx.strokeStyle = `rgba(168, 212, 232, ${opacity2})`;
-      ctx.lineWidth = 0.3;
-      ctx.stroke();
-    }
-  }
-}
-
-function animate() {
-  // Smooth lerp toward mouse position — this is the parallax
-  target.x += (mouse.x - target.x) * 0.03;
-  target.y += (mouse.y - target.y) * 0.03;
-
-  offset.x = (target.x / canvas.width - 0.5) * 18;
-  offset.y = (target.y / canvas.height - 0.5) * 18;
-
-  drawTriangleGrid(offset.x, offset.y);
-  requestAnimationFrame(animate);
-}
-
-animate();
-</script> -->
-
-
-
-
-
-
-<!-- <script>
-// Snow particle effect
-const canvas = document.getElementById('snow') as HTMLCanvasElement;
-const ctx = canvas.getContext('2d')!;
-
-function resize() {
-  const hero = canvas.parentElement!;
-  canvas.width = hero.offsetWidth;
-  canvas.height = hero.offsetHeight;
-}
-// function resize() {
-//   canvas.width = canvas.offsetWidth;
-//   canvas.height = canvas.offsetHeight;
-// }
-resize();
-window.addEventListener('resize', resize);
-
-function rand(min: number, max: number) {
-  return Math.random() * (max - min) + min;
-}
-
-const particles = Array.from({ length: 130 }, () => ({
-  x:           rand(0, canvas.width),
-  y:           rand(0, canvas.height),
-  r:           rand(0.3, 1.2),
-  speed:       rand(0.15, 0.55),
-  drift:       rand(-0.06, 0.06),
-  opacity:     rand(0.04, 0.18),
-  wobble:      rand(0, Math.PI * 2),
-  wobbleSpeed: rand(0.003, 0.008),
-}));
-
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  for (const p of particles) {
-    p.y += p.speed;
-    p.wobble += p.wobbleSpeed;
-    p.x += p.drift + Math.sin(p.wobble) * 0.15;
-
-    if (p.y > canvas.height) { p.y = -2; p.x = rand(0, canvas.width); }
-    if (p.x > canvas.width)  p.x = 0;
-    if (p.x < 0)             p.x = canvas.width;
-
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(200, 220, 235, ${p.opacity})`;
-    ctx.fill();
-  }
-
-  requestAnimationFrame(draw);
-}
-
-draw();
-</script> -->
-
-
-
-
-
-
-<!-- <Base title="Gentle Tyrant Studio">
-
-  
-  <section class="hero">
-    <div class="container hero-inner">
-
-      <div class="hero-eyebrow">
-		<span class="tag">Software Engineer</span>
-        <span class="tag">Indie Game Dev</span>
-      </div>
-
-      <h1 class="hero-headline">
-        <ScrambleText client:load text="MAKING GAMES" delay={300} speed={35} />
-        <br />
-        <em class="hero-sub">that feel good to play</em>
-      </h1>
-
-      <p class="hero-body">
-        Hi, I'm <strong>Jelle</strong> — a software engineer and indie dev.
-        I build games and the tools around them.
-      </p>
-
-      <div class="hero-cta">
-        <a href="/projects" class="btn btn-accent">See my work</a>
-        <a href="/about" class="btn">About me</a>
-      </div>
-
-    </div>
-
-    <div class="hero-grid" aria-hidden="true"></div>
-  </section>
-
-
-  <section class="section">
-    <div class="container">
-
-      <div class="section-header">
-        <span class="tag">Projects</span>
-        <h2>Featured work</h2>
-      </div>
-
-      <div class="cards-grid">
-        {featured.map(project => (
-          <FlipCard client:visible project={project} />
-        ))}
-      </div>
-
-    </div>
-  </section>
-
-</Base> -->
-
 <style>
 /* ─── Hero ───────────────────────────────────── */
 .hero {
   position: relative;
-  min-height: 90vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   overflow: hidden;
 }
 
-.hero-inner {
-  position: relative;
-  z-index: 1;
-  padding-block: var(--s12);
+/* The jungle image covers the full hero */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/jungle3.jpg');
+  background-size: cover;
+  background-position: center;
+  /* Subtle zoom-in on load for a cinematic feel */
+  animation: slowZoom 12s ease-out both;
 }
 
+@keyframes slowZoom {
+  from { transform: scale(1.06); }
+  to   { transform: scale(1); }
+}
+
+/* Fade the image to black at the bottom
+   so the projects section below flows naturally */
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.35) 0%,    /* slight dark tint at top */
+    rgba(10, 10, 10, 0.15) 40%,   /* mostly clear in the middle */
+    rgba(10, 10, 10, 0.85) 80%,   /* darkening */
+    rgba(10, 10, 10, 1)    100%   /* fully black at bottom */
+  );
+}
+
+/* Borderless wash — dark gradient sitting behind the text only
+   no hard edges, fades in all directions */
+.hero-wash {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 65%;
+  background: linear-gradient(
+    to right,
+    rgba(10, 10, 10, 0.82) 0%,
+    rgba(10, 10, 10, 0.65) 50%,
+    rgba(10, 10, 10, 0)    100%
+  );
+  pointer-events: none;
+}
+
+/* Content sits above everything */
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  padding-block: var(--s16);
+}
+
+/* New */
+.hero-inner .btn-accent {
+  border-color: var(--accent-dark);
+  color: var(--accent);
+  background: transparent;
+}
+
+.hero-inner .btn-accent:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+/* New */
+
 .hero-eyebrow {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
   margin-bottom: var(--s3);
 }
 
-.tag {
-  display: inline-block;
-  font-family: var(--font-body);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent);
-  border: 1px solid var(--accent-dark);
-  background: var(--accent-dim);
-  /* color: var(--accent); */
-  /* border: 1px solid var(--accent-dim); */
-  /* background: rgba(26, 48, 64, 0.4); */
-  padding: 0.3em 0.8em;
-}
-
 .hero-headline {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-family: var(--font-body);
+  font-size: clamp(1.9rem, 5.5vw, 5.5rem);
   font-weight: 400;
   line-height: 1.05;
-  margin-bottom: var(--s4);
+  margin-bottom: var(--s3);
   color: var(--ink);
-}
-
-.hero-headline em {
-  font-style: italic;
-  color: var(--accent);
 }
 
 .hero-sub {
   font-family: var(--font-display);
   font-style: italic;
-  /* font-size: 0.6em; */
-  color: var(--ink-muted);
   font-weight: 400;
-}
-/* .hero-sub {
-  font-style: italic;
   color: var(--accent);
-} */
+  display: block;
+  font-size: clamp(1.75rem, 5vw, 5rem);
+}
 
 .hero-body {
   max-width: 40ch;
-  color: var(--ink-muted);
+  color: var(--ink-soft);
   margin-bottom: var(--s4);
-  /* font-size: 0.85rem; */
+  line-height: 1.75;
 }
 
 .hero-cta {
@@ -337,24 +177,6 @@ draw();
   flex-wrap: wrap;
   gap: var(--s2);
 }
-
-/* ─── bg canvas ────────────────────────────── 0.04*/
-/* .hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse 60% 50% at 65% 50%,
-    rgba(168, 212, 232, 0.15) 0%,
-    transparent 70%
-  );
-  pointer-events: none;
-} */
-/* .bg-canvas {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-} */
 
 /* ─── Featured section ───────────────────────── */
 .section-header {
@@ -376,138 +198,7 @@ draw();
 
 /* ─── Mobile ─────────────────────────────────── */
 @media (max-width: 600px) {
-  .hero { min-height: 75vh; }
+  .hero-wash { width: 100%; }
   .cards-grid { grid-template-columns: 1fr; }
 }
 </style>
-
-<!-- <style>
-/* HERO */
-.hero {
-  position: relative;
-  min-height: 85vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-
-.hero-inner {
-  position: relative;
-  z-index: 1;
-  padding-block: var(--s12);
-}
-
-.hero-eyebrow {
-  margin-bottom: var(--s3);
-}
-
-.hero-headline {
-  font-family: var(--font-body);
-  font-weight: 400;
-  margin-bottom: var(--s4);
-}
-
-.hero-sub {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 0.75em;
-  color: var(--ink-muted);
-}
-
-.hero-body {
-  max-width: 44ch;
-  color: var(--ink-muted);
-  margin-bottom: var(--s4);
-}
-
-.hero-cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s2);
-}
-
-/* Decorative background grid */
-.hero-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 60px 60px;
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.hero-grid::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(to bottom, transparent, var(--bg));
-}
-
-/* PROJECTS */
-.section-header {
-  margin-bottom: var(--s6);
-}
-
-.section-header h2 {
-  margin-top: var(--s2);
-}
-
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--s4);
-}
-
-@media (max-width: 600px) {
-  .hero { min-height: 75vh; }
-  .cards-grid { grid-template-columns: 1fr; }
-}
-</style> -->
-
-
-
-
-
-
-
-
-<!-- ---
-import Base from '../layouts/Base.astro';
-import ScrambleText from '../components/ScrambleText.vue';
----
-
-<Base title="Gentle Tyrant Studio">
-	<section class="section">
-		<div class="container">
-			<ScrambleText client:load text="MAKING GAMES" delay={300} speed={35} />
-			<h1>Hello world</h1>
-			<p>This is my studio site.</p>
-		</div>
-	</section>
-</Base> -->
-
-
-
-
-<!-- ---
-
----
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html> -->
