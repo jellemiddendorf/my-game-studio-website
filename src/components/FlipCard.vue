@@ -109,13 +109,17 @@ defineProps<{
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.55s ease;
+  transition: transform 0.55s ease, opacity 0.15s ease, filter 0.15s ease; /* Blur effect ease opacity and filter */
   opacity: 0.85;
+
+  filter: blur(3px) brightness(0.7); /* Blur effect */
 }
 
 .flip-card:hover .front-image {
   transform: scale(1.04);
   opacity: 1;
+
+  filter: blur(0px) brightness(0.9); /* Blur effect */
 }
 
 .status-badge {
@@ -199,7 +203,8 @@ defineProps<{
 }
 
 .back-description {
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
+  /* font-size: var(--text-base); */
   /* font-size: 0.8rem; */
   line-height: 1.7;
   color: var(--ink-soft);
