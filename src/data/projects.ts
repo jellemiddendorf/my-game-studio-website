@@ -53,7 +53,23 @@ export const projects: Project[] = [
     links: {
         github: 'https://github.com/yourname/project-two',
     },
-    featured: false,
+    featured: true,
+  },
+  {
+    id: 'project-two',
+    title: 'Second Project',
+    tagline: 'Another thing I built.',
+    description:
+        'What was this? What was technically interesting about it?',
+    engine: 'Unity',
+    tags: ['Puzzle', 'C#', 'Unity'],
+    status: 'wip',
+    year: 2025,
+    image: '/images/placeholder.svg',
+    links: {
+        github: 'https://github.com/yourname/project-two',
+    },
+    featured: true,
   },
 ];
 

@@ -162,16 +162,6 @@ defineProps<{
   line-height: 1.5;
 }
 
-/* .flip-hint {
-  display: block;
-  margin-top: 0.75rem;
-  font-size: 0.65rem;
-  color: var(--accent-dark);
-  letter-spacing: 0.06em;
-  opacity: 0;
-  transition: opacity 0.3s;
-} */
-
 .flip-card:hover .flip-hint { opacity: 1; }
 
 /* ─── BACK ───────────────────────────────────── */

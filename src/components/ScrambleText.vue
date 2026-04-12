@@ -1,11 +1,11 @@
 <script setup lang="ts">
-// This is the Vue "Composition API" style — modern Vue 3.
+// This is the Vue "Composition API" style - modern Vue 3.
 // script setup means everything you declare here is automatically
 // available in the template below. No need to return anything.
 
 import { ref, onMounted } from 'vue';
 
-// Props — what the parent page passes in to this component
+// Props - what the parent page passes in to this component
 const props = withDefaults(defineProps<{
   text: string;    // the final text to display
   delay?: number;  // ms to wait before starting
@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<{
 // Characters to cycle through while scrambling
 const CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
 
-// ref() is Vue's reactivity system — when this changes, the template re-renders
+// ref() is Vue's reactivity system - when this changes, the template re-renders
 const displayed = ref('');
 
 function randomChar(): string {
@@ -37,9 +37,9 @@ onMounted(() => {
       const lockedCount = Math.floor(frame / ITERS_PER_CHAR);
 
       displayed.value =
-        // Characters that have locked — show real text
+        // Characters that have locked - show real text
         target.slice(0, lockedCount) +
-        // Characters still scrambling — show random
+        // Characters still scrambling - show random
         Array.from({ length: target.length - lockedCount }, (_, i) =>
           target[lockedCount + i] === ' ' ? ' ' : randomChar()
         ).join('');
@@ -64,7 +64,7 @@ onMounted(() => {
 
 <style scoped>
 .scramble {
-  /* Mono font is essential here — proportional fonts would make
+  /* Mono font is essential here - proportional fonts would make
      the text jump around as different-width characters swap in */
   font-family: var(--font-body);
 }
