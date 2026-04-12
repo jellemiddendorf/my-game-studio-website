@@ -34,8 +34,10 @@ export const projects: Project[] = [
     year: 2026,
     image: '/images/Visual test done v3 480x270 instead of 720x405.png',
     links: {
-        steam: 'https://store.steampowered.com/app/YOUR_APP_ID',
-        itch:  'https://yourname.itch.io/your-game',
+        steam: '/',
+        itch: '/',
+        // steam: 'https://store.steampowered.com/app/YOUR_APP_ID',
+        // itch:  'https://yourname.itch.io/your-game',
     },
     featured: true,
   },
@@ -51,7 +53,7 @@ export const projects: Project[] = [
     year: 2025,
     image: '/images/rebel run image for website.png',
     links: {
-        github: 'https://github.com/yourname/project-two',
+        github: 'https://github.com/Rebel-Run/Rebel-Run',
     },
     featured: true,
   },
@@ -67,7 +69,7 @@ export const projects: Project[] = [
     year: 2025,
     image: '/images/Quintor Generated map.png',
     links: {
-        github: 'https://github.com/yourname/project-two',
+        github: 'https://github.com/jellemiddendorf/calculation-engine-main',
     },
     featured: true,
   },
@@ -83,7 +85,7 @@ export const projects: Project[] = [
     year: 2025,
     image: '/images/PatientsPlease Menu.jpeg',
     links: {
-        github: 'https://github.com/yourname/project-two',
+        github: 'https://github.com/Zerphyy/PatientsPlease',
     },
     featured: false,
   },
