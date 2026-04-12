@@ -53,6 +53,7 @@ onMounted(() => {
 
 <style scoped>
 .scramble {
-  font-family: var(--font-body);
+  font-family: inherit;
+  /* font-family: var(--font-body); */
 }
 </style>

@@ -110,6 +110,7 @@ h3 { font-size: 1.35rem; }
   background: transparent;
   color: var(--ink-soft);
   transition: border-color 0.2s, color 0.2s;
+  border-radius: 5px;
 }
 
 .btn:hover {

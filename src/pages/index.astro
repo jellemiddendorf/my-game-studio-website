@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import ScrambleText from '../components/ScrambleText.vue';
+import TypeScramble from '../components/TypeScramble.vue';
 import FlipCard from '../components/FlipCard.vue';
 import { projects } from '../data/projects';
 
@@ -20,14 +21,18 @@ const featured = projects.filter(p => p.featured);
 
     <div class="container hero-inner">
       <div class="hero-eyebrow">
-        <span class="tag">Software Engineer</span>
-        <span class="tag">Indie Game Dev</span>
+        <span class="tag">Gentle Tyrant Studio</span>
+        <!-- <span class="tag">Software Engineer</span>
+        <span class="tag">Indie Game Dev</span> -->
       </div>
 
       <h1 class="hero-headline">
-        <ScrambleText client:load text="GENTLE BY NATURE" delay={300} speed={20} />
+        <TypeScramble client:load text="GENTLE BY NATURE" delay={300} speed={20} />
         <br />
-        <em class="hero-sub">Tyrannical about game design</em>
+        <em class="hero-sub">
+          <TypeScramble  client:load text="Tyrannical about game design" delay={300} speed={11.2}/>
+        </em>
+        <!-- <em class="hero-sub">Tyrannical about game design</em> -->
       </h1>
 
       <p class="hero-body">

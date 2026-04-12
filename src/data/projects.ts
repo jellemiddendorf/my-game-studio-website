@@ -42,7 +42,7 @@ export const projects: Project[] = [
   {
     id: 'project-two',
     title: 'Rebel Run',
-    tagline: 'One run. One shot. Good luck pilot.',
+    tagline: 'One run. One shot. Good luck.',
     description:
         'A fast-paced action game where you pilot a starfighter through deadly trenches, dodging obstacles and enemies while a relentless battlecruiser hunts you, as you race to deliver a precise, mission-critical strike.',
     engine: 'Unity',
