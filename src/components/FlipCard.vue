@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// We import the types we defined in projects.ts
+// I import the types defined in projects.ts
 // so TypeScript knows exactly what shape a project object is
 import type { Project } from '../data/projects';
 import { statusLabel } from '../data/projects';
