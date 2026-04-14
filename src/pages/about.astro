@@ -13,6 +13,7 @@ import Base from '../layouts/Base.astro';
       <div class="bio fade-up">
         <span class="tag">About</span>
         <h1>Jelle Middendorf</h1>
+        <p class="handle">·Lv1Skeleton ·Gentle Tyrant Studio</p>
 
         <p class="bio-text">
           I'm a software engineer and the person behind Gentle Tyrant Studio.
@@ -108,9 +109,18 @@ h1 {
   font-family: var(--font-display);
   font-weight: 400;
   margin-top: var(--s2);
-  margin-bottom: var(--s4);
+  margin-bottom: 0.25rem;
+  /* margin-bottom: var(--s4); */
   color: var(--ink);
   font-size: clamp(2.9rem, 4.5vw, 4.375rem);
+}
+
+.handle {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+  letter-spacing: 0.12em;
+  margin-bottom: var(--s4);
 }
 
 .bio-text {
