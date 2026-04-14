@@ -91,6 +91,17 @@ const currentPath = Astro.url.pathname;
     'floating-chat.donateButton.text-color': '#0A0A0A'
   });
 </script>
+<script is:inline>
+  window.addEventListener('scroll', () => {
+    const kofiBtn = document.querySelector('.kofi-overlay-button');
+    if (!kofiBtn) return;
+    if (window.scrollY > 200) {
+      kofiBtn.classList.remove('kofi-collapsed');
+    } else {
+      kofiBtn.classList.add('kofi-collapsed');
+    }
+  });
+</script>
 </body>
 </html>
 
