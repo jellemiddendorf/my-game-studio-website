@@ -126,9 +126,9 @@ h3 { font-size: 1.35rem; }
 }
 
 .btn-accent:hover {
-  background: var(--accent-dim);
   border-color: var(--accent);
   color: var(--accent);
+    background: var(--accent-dim);
 }
 
 .divider {

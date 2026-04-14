@@ -28,13 +28,26 @@ import Base from '../layouts/Base.astro';
         </p>
 
         <p class="bio-text">
+          This site is built with Astro and Vue, deployed on Cloudflare Pages. 
+          The source is on
+          <a href="https://github.com/jellemiddendorf" class="inline-link" target="_blank" rel="noopener">
+            GitHub
+          </a>
+          if you're curious, and if you want to buy me a cup of coffee,
+          <a href="https://ko-fi.com/gentletyrantstudio" class="inline-link" target="_blank" rel="noopener">
+            Ko-fi
+          </a>
+          is where to do it.
+        </p>
+
+        <!-- <p class="bio-text">
           This site is built with Astro and Vue, deployed on Cloudflare Pages.
           The source is on
           <a href="https://github.com/jellemiddendorf/my-game-studio-website" class="inline-link" target="_blank" rel="noopener">
             GitHub
           </a>
           if you're curious.
-        </p>
+        </p> -->
 
         <div class="bio-links">
           <a href="mailto:gentletyrantstudio@outlook.com" class="btn btn-accent">Email me</a>
@@ -138,13 +151,13 @@ h1 {
 }
 
 .inline-link {
-  color: var(--accent);
+  color: var(--accent-dark);
   text-decoration: underline;
   text-underline-offset: 3px;
   transition: color 0.2s;
 }
 
-.inline-link:hover { color: var(--accent-dark); }
+.inline-link:hover { color: var(--accent); }
 
 /* FACTS */
 .facts {
