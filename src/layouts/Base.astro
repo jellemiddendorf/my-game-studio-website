@@ -82,6 +82,15 @@ const currentPath = Astro.url.pathname;
       </ul>
     </div>
   </footer>
+<script is:inline src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+<script is:inline>
+  kofiWidgetOverlay.draw('gentletyrantstudio', {
+    'type': 'floating-chat',
+    'floating-chat.donateButton.text': 'Support me',
+    'floating-chat.donateButton.background-color': '#ffe177',
+    'floating-chat.donateButton.text-color': '#0A0A0A'
+  });
+</script>
 </body>
 </html>
 
