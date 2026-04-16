@@ -62,7 +62,7 @@ const currentPath = Astro.url.pathname;
     <div class="container header-inner">
       <a href="/" class="wordmark">
         <!-- <img src="/favicon-16x16.png" alt="Gentle Tyrant Studio" class="logo-img" /> -->
-        <!-- <div class="logo-placeholder" aria-hidden="true"></div> -->
+        <div class="logo-placeholder" aria-hidden="true"></div>
         <span class="wordmark-text">Gentle Tyrant Studio</span>
         <span class="wordmark-dot">·</span>
       </a>
@@ -149,8 +149,8 @@ const currentPath = Astro.url.pathname;
 .logo-placeholder {
   width: 32px;
   height: 32px;
-  border: 1px solid var(--border);
-  background: var(--bg-raised);
+  border: 1px solid var(--bg-card);
+  background: var(--bg);
   flex-shrink: 0;
   position: relative;
 }
