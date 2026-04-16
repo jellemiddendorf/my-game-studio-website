@@ -18,7 +18,7 @@ defineProps<{
         <div class="front-image-wrap">
           <img
             :src="project.image"
-            :alt="`${project.title} screenshot`"
+            :alt="`${project.title} screenshot - ${project.tagline}`"
             class="front-image"
             loading="lazy"
           />
