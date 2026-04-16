@@ -8,7 +8,8 @@ interface Props {
 
 const {
   title = 'Gentle Tyrant Studio',
-  description = 'Software developer and indie game dev. I program for the same reason anyone makes anything, because I had ideas that needed somewhere to go. Known online as Lv1Skeleton, studio is Gentle Tyrant.',
+  description = 'Software developer. I program for the same reason anyone makes anything, because I had ideas that needed somewhere to go. Jelle Middendorf, solo dev behind Gentle Tyrant Studio, known online as Lv1Skeleton.',
+  // description = 'Software developer and indie game dev. I program for the same reason anyone makes anything, because I had ideas that needed somewhere to go. Known online as Lv1Skeleton, studio is Gentle Tyrant.',
   // description = 'Software developer. I program for the same reason anyone makes anything, because I had ideas that needed somewhere to go. Indie games by Jelle Middendorf, Lv1Skeleton, Gentle Tyrant, Gentle Tyrant Studio',
   // description = 'Indie game studio: games, experiments, and dev work.',
 } = Astro.props;
@@ -35,16 +36,20 @@ const currentPath = Astro.url.pathname;
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content={Astro.url} />
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-  <meta property="og:image" content="https://gentletyrantstudio.com/images/og-image.jpg" />
+  <meta property="og:title" content={`${title} | Lv1Skeleton | Jelle Middendorf`} />
+  <!-- <meta property="og:title" content={title} /> -->
+  <meta property="og:description" content="Software developer. I program for the same reason anyone makes anything, because I had ideas that needed somewhere to go. Indie games by Lv1Skeleton." />
+  <!-- <meta property="og:description" content={description} /> -->
+  <meta property="og:image" content="https://gentletyrantstudio.com/images/og-image-compressed.jpg" />
   <meta property="og:site_name" content="Gentle Tyrant Studio" />
 
   <!-- Twitter/X -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content="https://gentletyrantstudio.com/images/og-image.jpg" />
+  <meta name="twitter:title" content={`${title} | Lv1Skeleton | Jelle Middendorf`} />
+  <!-- <meta name="twitter:title" content={title} /> -->
+  <meta name="twitter:description" content="Software developer. I program for the same reason anyone makes anything, because I had ideas that needed somewhere to go. Indie games by Lv1Skeleton." />
+  <!-- <meta name="twitter:description" content={description} /> -->
+  <meta name="twitter:image" content="https://gentletyrantstudio.com/images/og-image-compressed.jpg" />
   <!-- Open Graph Tags For sharing My Website in Socials -->
 
   <!-- Google Fonts -->
