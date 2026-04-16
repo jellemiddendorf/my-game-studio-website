@@ -73,7 +73,7 @@ const featured = projects.filter(p => p.featured);
   if (window.innerWidth <= 600) {
     window.addEventListener('load', () => {
       setTimeout(() => {
-        window.scrollTo({ top: 100, behavior: 'instant' });
+        window.scrollTo({ top: 100, behavior: 'smooth' });
       }, 100);
     });
   }
